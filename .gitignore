@@ -1,0 +1,39 @@
+# =======================================================
+# Plants vs. Zombies: Tactical Warfare — Git Ignore Rules
+# =======================================================
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+frontend/dist/
+backend/build/
+*.exe
+*.o
+*.obj
+*.dll
+*.pdb
+*.ilk
+*.suo
+
+# Local binary storage & test artifacts
+backend/data/
+data/
+test_data/
+test_data_live/
+*.bin
+*.dat
+*.idx
+*.huff
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
