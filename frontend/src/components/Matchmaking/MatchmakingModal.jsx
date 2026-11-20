@@ -1,33 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth, API_BASE } from '../../context/AuthContext';
 
-/* Radar icon SVG for searching state */
-const RadarIcon = () => (
-  <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-    <circle cx="26" cy="26" r="24" stroke="rgba(90,170,42,0.3)" strokeWidth="2" />
-    <circle cx="26" cy="26" r="16" stroke="rgba(90,170,42,0.2)" strokeWidth="1.5" />
-    <circle cx="26" cy="26" r="8" stroke="rgba(90,170,42,0.3)" strokeWidth="1.5" />
-    <circle cx="26" cy="26" r="2.5" fill="#5aaa2a" />
-    <line x1="26" y1="26" x2="26" y2="4" stroke="rgba(90,170,42,0.6)" strokeWidth="1.5" />
-  </svg>
-);
-
-const PlantSilhouette = () => (
-  <img
-    src="/assets/Cards/card_peashooter.png"
-    alt="Plant"
-    style={{ width: 60, height: 60, objectFit: 'contain', imageRendering: 'pixelated', opacity: 0.9 }}
-  />
-);
-
-const ZombieSilhouette = () => (
-  <img
-    src="/assets/Zombies/NormalZombie/Zombie/Zombie_0.png"
-    alt="Zombie"
-    style={{ width: 60, height: 60, objectFit: 'contain', imageRendering: 'pixelated', opacity: 0.9 }}
-  />
-);
-
 export default function MatchmakingModal({ isOpen, onClose, onMatchFound }) {
   const { user } = useAuth();
   const [elapsed, setElapsed] = useState(0);
@@ -120,21 +93,46 @@ export default function MatchmakingModal({ isOpen, onClose, onMatchFound }) {
           boxShadow: '0 20px 60px rgba(0,0,0,0.9)',
           animation: 'slide-up 0.2s ease',
         }}>
-          {/* Radar spinner */}
+          {/* CSS-based radar spinner */}
           <div style={{
             width: 100, height: 100, margin: '0 auto 24px',
             position: 'relative',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            {/* rotating sweep line */}
+            {/* Outer ring */}
             <div style={{
               position: 'absolute', inset: 0,
-              border: '2px solid rgba(90,170,42,0.35)',
+              border: '2px solid rgba(90,170,42,0.3)',
+              borderRadius: '50%',
+            }} />
+            {/* Middle ring */}
+            <div style={{
+              position: 'absolute', top: 12, left: 12, right: 12, bottom: 12,
+              border: '1.5px solid rgba(90,170,42,0.2)',
+              borderRadius: '50%',
+            }} />
+            {/* Inner ring */}
+            <div style={{
+              position: 'absolute', top: 24, left: 24, right: 24, bottom: 24,
+              border: '1.5px solid rgba(90,170,42,0.3)',
+              borderRadius: '50%',
+            }} />
+            {/* Center dot */}
+            <div style={{
+              position: 'absolute', top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 5, height: 5,
+              background: '#5aaa2a',
+              borderRadius: '50%',
+            }} />
+            {/* Rotating sweep line */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              border: '2px solid transparent',
               borderTopColor: '#5aaa2a',
               borderRadius: '50%',
               animation: 'spin 1.4s linear infinite',
             }} />
-            <RadarIcon />
           </div>
 
           <h2 style={{
@@ -146,7 +144,7 @@ export default function MatchmakingModal({ isOpen, onClose, onMatchFound }) {
             Finding Opponent
           </h2>
           <p style={{ color: 'rgba(160,145,120,0.65)', fontSize: 13, marginBottom: 24 }}>
-            ELO range: &plusmn;{100 + elapsed * 25} &nbsp;&middot;&nbsp; Searching: {elapsed}s
+            ELO range: ±{100 + elapsed * 25} &nbsp;·&nbsp; Searching: {elapsed}s
           </p>
 
           {/* Player card */}
@@ -216,7 +214,11 @@ export default function MatchmakingModal({ isOpen, onClose, onMatchFound }) {
               padding: '28px 20px',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
             }}>
-              {matchedData.role === 'PLANT' ? <PlantSilhouette /> : <ZombieSilhouette />}
+              <img
+                src={matchedData.role === 'PLANT' ? '/assets/Cards/card_peashooter.png' : '/assets/Zombies/NormalZombie/Zombie/Zombie_0.png'}
+                alt={matchedData.role}
+                style={{ width: 60, height: 60, objectFit: 'contain', imageRendering: 'pixelated', opacity: 0.9 }}
+              />
               <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 18, color: '#fce8c4' }}>
                 {user?.display_name || 'You'}
               </div>
@@ -265,7 +267,11 @@ export default function MatchmakingModal({ isOpen, onClose, onMatchFound }) {
               padding: '28px 20px',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
             }}>
-              {matchedData.role === 'PLANT' ? <ZombieSilhouette /> : <PlantSilhouette />}
+              <img
+                src={matchedData.role === 'PLANT' ? '/assets/Zombies/NormalZombie/Zombie/Zombie_0.png' : '/assets/Cards/card_peashooter.png'}
+                alt={matchedData.role === 'PLANT' ? 'Zombie' : 'Plant'}
+                style={{ width: 60, height: 60, objectFit: 'contain', imageRendering: 'pixelated', opacity: 0.9 }}
+              />
               <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 18, color: '#fce8c4' }}>
                 {matchedData.opponent}
               </div>

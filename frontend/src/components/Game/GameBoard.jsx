@@ -24,10 +24,7 @@ const SunIcon = () => (
 );
 
 const BrainIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.73A3 3 0 0 1 4 10a3 3 0 0 1 3-3 2.5 2.5 0 0 1 2.5-5z"/>
-    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.73A3 3 0 0 0 20 10a3 3 0 0 0-3-3 2.5 2.5 0 0 0-2.5-5z"/>
-  </svg>
+  <span style={{fontSize: 16, lineHeight: 1}}>🧠</span>
 );
 
 export default function GameBoard({ roomId, playerRole, onExit }) {

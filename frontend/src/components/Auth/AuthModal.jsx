@@ -1,27 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
-/* SVG eye icon — no emoji */
-const EyeOpen = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
-  </svg>
-);
-
-const EyeClosed = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-    <line x1="1" y1="1" x2="23" y2="23"/>
-  </svg>
-);
-
-const AlertIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-  </svg>
-);
-
 export default function AuthModal({ isOpen, onClose }) {
   const { login, register } = useAuth();
   const [isRegister, setIsRegister] = useState(false);
@@ -54,42 +33,26 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   };
 
-  const getPasswordStrength = () => {
-    if (!password) return 0;
-    let s = 0;
-    if (password.length >= 6) s += 33;
-    if (/[A-Z]/.test(password) || /[0-9]/.test(password)) s += 33;
-    if (/[^A-Za-z0-9]/.test(password) && password.length >= 8) s += 34;
-    return s;
-  };
-
-  const strengthColor = () => {
-    const v = getPasswordStrength();
-    if (v > 66) return '#5aaa2a';
-    if (v > 33) return '#d4900a';
-    return '#b53028';
-  };
-
   return (
     <div className="modal-backdrop">
       <div style={{
-        width: 420,
+        width: 380,
         maxWidth: '92vw',
         background: 'rgba(8, 16, 7, 0.97)',
         border: '2px solid rgba(80, 130, 40, 0.5)',
         borderTop: '3px solid rgba(100, 170, 50, 0.7)',
         borderRadius: 6,
-        padding: 32,
+        padding: 28,
         boxShadow: '0 20px 60px rgba(0,0,0,0.9)',
         animation: 'slide-up 0.2s ease',
       }}>
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
           <div>
             <h2 style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
-              fontSize: 22,
+              fontSize: 20,
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               color: '#fce8c4',
@@ -97,7 +60,7 @@ export default function AuthModal({ isOpen, onClose }) {
             }}>
               {isRegister ? 'Create Account' : 'Welcome Back'}
             </h2>
-            <p style={{ color: 'rgba(160, 145, 120, 0.7)', fontSize: 13 }}>
+            <p style={{ color: 'rgba(160, 145, 120, 0.7)', fontSize: 12 }}>
               {isRegister
                 ? 'Register to compete on the global leaderboard'
                 : 'Sign in to access your tactical profile'}
@@ -114,7 +77,7 @@ export default function AuthModal({ isOpen, onClose }) {
             onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(180,160,130,0.5)'}
             aria-label="Close"
           >
-            ✕
+            ×
           </button>
         </div>
 
@@ -125,18 +88,18 @@ export default function AuthModal({ isOpen, onClose }) {
             background: 'rgba(181, 48, 40, 0.18)',
             border: '1px solid rgba(181, 48, 40, 0.5)',
             borderRadius: 4, padding: '10px 14px',
-            marginBottom: 18, fontSize: 13, color: '#ff9b8a',
+            marginBottom: 16, fontSize: 12, color: '#ff9b8a',
           }}>
-            <AlertIcon />
+            <span style={{fontWeight: 'bold'}}>!</span>
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {/* Username */}
           <div>
             <label style={{
-              display: 'block', marginBottom: 6,
+              display: 'block', marginBottom: 5,
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: 11, fontWeight: 600,
               letterSpacing: '0.08em', textTransform: 'uppercase',
@@ -158,7 +121,7 @@ export default function AuthModal({ isOpen, onClose }) {
           {/* Password */}
           <div>
             <label style={{
-              display: 'block', marginBottom: 6,
+              display: 'block', marginBottom: 5,
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: 11, fontWeight: 600,
               letterSpacing: '0.08em', textTransform: 'uppercase',
@@ -191,31 +154,16 @@ export default function AuthModal({ isOpen, onClose }) {
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(160, 145, 120, 0.6)'}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? <EyeClosed /> : <EyeOpen />}
+                {showPassword ? '🙈' : '👁'}
               </button>
             </div>
-
-            {/* Strength bar — only on register */}
-            {isRegister && password && (
-              <div style={{ marginTop: 7 }}>
-                <div style={{ height: 3, background: 'rgba(255,255,255,0.08)', borderRadius: 2, overflow: 'hidden' }}>
-                  <div style={{
-                    height: '100%',
-                    width: `${getPasswordStrength()}%`,
-                    background: strengthColor(),
-                    transition: 'width 0.3s, background 0.3s',
-                    borderRadius: 2,
-                  }} />
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Confirm Password */}
           {isRegister && (
             <div>
               <label style={{
-                display: 'block', marginBottom: 6,
+                display: 'block', marginBottom: 5,
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontSize: 11, fontWeight: 600,
                 letterSpacing: '0.08em', textTransform: 'uppercase',
@@ -252,15 +200,15 @@ export default function AuthModal({ isOpen, onClose }) {
 
         {/* Switch mode */}
         <div style={{
-          marginTop: 18, textAlign: 'center',
-          fontSize: 13, color: 'rgba(160, 145, 120, 0.65)',
+          marginTop: 16, textAlign: 'center',
+          fontSize: 12, color: 'rgba(160, 145, 120, 0.65)',
         }}>
           {isRegister ? (
             <>
               Already have an account?{' '}
               <button
                 onClick={() => setIsRegister(false)}
-                style={{ background: 'none', border: 'none', color: '#90c860', cursor: 'pointer', fontSize: 13, padding: 0 }}
+                style={{ background: 'none', border: 'none', color: '#90c860', cursor: 'pointer', fontSize: 12, padding: 0 }}
               >
                 Sign in
               </button>
@@ -270,7 +218,7 @@ export default function AuthModal({ isOpen, onClose }) {
               New recruit?{' '}
               <button
                 onClick={() => setIsRegister(true)}
-                style={{ background: 'none', border: 'none', color: '#90c860', cursor: 'pointer', fontSize: 13, padding: 0 }}
+                style={{ background: 'none', border: 'none', color: '#90c860', cursor: 'pointer', fontSize: 12, padding: 0 }}
               >
                 Create account
               </button>

@@ -1,7 +1,7 @@
 @echo off
 title Plants vs. Zombies: Tactical Warfare - Game Runner
 echo ====================================================================
-echo   PLANTS VS. ZOMBIES: TACTICAL WARFARE - ONE-CLICK RUNNER
+echo   PLANTS VS. ZOMBIES: TACT  ICAL WARFARE - ONE-CLICK RUNNER
 echo ====================================================================
 echo.
 

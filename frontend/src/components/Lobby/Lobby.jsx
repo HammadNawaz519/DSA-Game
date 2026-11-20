@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth, API_BASE } from '../../context/AuthContext';
 
-const AlertIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-  </svg>
-);
-
-const RefreshIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-  </svg>
-);
-
 export default function Lobby({ onNavigate, onStartGame }) {
   const { user } = useAuth();
   const [rooms, setRooms] = useState([]);
@@ -99,20 +86,20 @@ export default function Lobby({ onNavigate, onStartGame }) {
       minHeight: '100vh',
       background: 'rgba(8, 16, 7, 1)',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
-      padding: '36px 20px',
+      padding: '32px 20px',
       position: 'relative',
     }}>
       <img
         src="/assets/Items/Background/Background_0.jpg"
         alt=""
-        style={{ position: 'fixed', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12, pointerEvents: 'none', zIndex: 0 }}
+        style={{ position: 'fixed', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.1, pointerEvents: 'none', zIndex: 0 }}
       />
 
       <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 900 }}>
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 28 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 24 }}>
           <div>
-            <h1 className="game-title" style={{ fontSize: 28, color: '#fce8c4', marginBottom: 4 }}>
+            <h1 className="game-title" style={{ fontSize: 26, color: '#fce8c4', marginBottom: 4 }}>
               Multiplayer Battle Lobby
             </h1>
             <p style={{
@@ -124,7 +111,7 @@ export default function Lobby({ onNavigate, onStartGame }) {
             </p>
           </div>
           <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 18px', fontSize: 12 }} onClick={() => onNavigate('menu')}>
-            Back to Menu
+            ← Back to Menu
           </button>
         </div>
 
@@ -134,31 +121,31 @@ export default function Lobby({ onNavigate, onStartGame }) {
             background: 'rgba(181, 48, 40, 0.15)',
             border: '1px solid rgba(181, 48, 40, 0.5)',
             borderRadius: 4, padding: '10px 14px',
-            marginBottom: 20, fontSize: 13, color: '#ff9b8a',
+            marginBottom: 20, fontSize: 12, color: '#ff9b8a',
           }}>
-            <AlertIcon />
+            <span style={{fontWeight: 'bold'}}>!</span>
             {error}
           </div>
         )}
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
           {/* Create Room Box */}
           <div style={{
             background: 'rgba(8, 16, 7, 0.92)',
             border: '2px solid rgba(80, 130, 40, 0.3)',
-            borderRadius: 6, padding: '22px 24px',
+            borderRadius: 6, padding: '20px 22px',
           }}>
             <h2 style={{
               fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 700, fontSize: 18, letterSpacing: '0.04em', textTransform: 'uppercase',
-              color: '#fce8c4', marginBottom: 18,
+              fontWeight: 700, fontSize: 16, letterSpacing: '0.04em', textTransform: 'uppercase',
+              color: '#fce8c4', marginBottom: 16,
             }}>
               Host Match Room
             </h2>
             <form onSubmit={handleCreateRoom}>
-              <div style={{ marginBottom: 16 }}>
+              <div style={{ marginBottom: 14 }}>
                 <label style={{
-                  display: 'block', marginBottom: 6,
+                  display: 'block', marginBottom: 5,
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase',
                   color: 'rgba(130,190,80,0.8)',
@@ -175,7 +162,7 @@ export default function Lobby({ onNavigate, onStartGame }) {
                 />
               </div>
 
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 18 }}>
                 <label style={{
                   display: 'block', marginBottom: 8,
                   fontFamily: "'Barlow Condensed', sans-serif",
@@ -194,7 +181,7 @@ export default function Lobby({ onNavigate, onStartGame }) {
                       border: `1px solid ${selectedMode === 1 ? '#5aaa2a' : 'rgba(80,130,40,0.3)'}`,
                       color: selectedMode === 1 ? '#fce8c4' : 'rgba(180,160,130,0.6)',
                       fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 700, fontSize: 13, textTransform: 'uppercase', cursor: 'pointer',
+                      fontWeight: 700, fontSize: 12, textTransform: 'uppercase', cursor: 'pointer',
                     }}
                   >
                     1v1 PvP
@@ -208,7 +195,7 @@ export default function Lobby({ onNavigate, onStartGame }) {
                       border: `1px solid ${selectedMode === 2 ? '#5aaa2a' : 'rgba(80,130,40,0.3)'}`,
                       color: selectedMode === 2 ? '#fce8c4' : 'rgba(180,160,130,0.6)',
                       fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 700, fontSize: 13, textTransform: 'uppercase', cursor: 'pointer',
+                      fontWeight: 700, fontSize: 12, textTransform: 'uppercase', cursor: 'pointer',
                     }}
                   >
                     2-Player Co-op
@@ -231,13 +218,13 @@ export default function Lobby({ onNavigate, onStartGame }) {
           <div style={{
             background: 'rgba(8, 16, 7, 0.92)',
             border: '2px solid rgba(80, 130, 40, 0.3)',
-            borderRadius: 6, padding: '22px 24px',
+            borderRadius: 6, padding: '20px 22px',
             display: 'flex', flexDirection: 'column',
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
               <h2 style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700, fontSize: 18, letterSpacing: '0.04em', textTransform: 'uppercase',
+                fontWeight: 700, fontSize: 16, letterSpacing: '0.04em', textTransform: 'uppercase',
                 color: '#fce8c4',
               }}>
                 Active Rooms ({rooms.length})
@@ -247,7 +234,7 @@ export default function Lobby({ onNavigate, onStartGame }) {
                 style={{ padding: '6px 12px', fontSize: 11 }}
                 onClick={fetchRooms}
               >
-                <RefreshIcon /> Refresh
+                ↻ Refresh
               </button>
             </div>
 
@@ -269,11 +256,11 @@ export default function Lobby({ onNavigate, onStartGame }) {
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   }}>
                     <div>
-                      <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 15, color: '#fce8c4' }}>
+                      <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 14, color: '#fce8c4' }}>
                         {r.name}
                       </div>
                       <div style={{ fontSize: 11, color: 'rgba(160,145,120,0.6)', marginTop: 2 }}>
-                        Host: {r.p1} &nbsp;&middot;&nbsp; {r.p2 ? 'Occupied (2/2)' : 'Waiting (1/2)'}
+                        Host: {r.p1} &nbsp;·&nbsp; {r.p2 ? 'Occupied (2/2)' : 'Waiting (1/2)'}
                       </div>
                     </div>
                     <div>

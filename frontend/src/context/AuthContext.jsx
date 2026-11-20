@@ -2,7 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
-export const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+// Use relative URLs when running through Vite proxy, fallback to localhost:8080
+export const API_BASE = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? '' : 'http://localhost:8080');
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

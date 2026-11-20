@@ -10,65 +10,9 @@ function getRank(elo) {
   return                         { title: 'Silver Sentinel',     cls: 'rank-silver'      };
 }
 
-/* SVG icons — clean, functional, no emojis */
-const SvgSword = () => (
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffd700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="17" y1="3" x2="3" y2="17"/><path d="M14 6l4 4"/>
-    <path d="M3 21l3-3"/><path d="M14 14l-4 4"/>
-  </svg>
-);
-
-const SvgUsers = () => (
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffd700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
-    <circle cx="17" cy="9" r="3"/><path d="M23 21v-1a3 3 0 0 0-3-3h-2"/>
-  </svg>
-);
-
-const SvgBot = () => (
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffd700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 11V5"/><circle cx="12" cy="4" r="1"/>
-    <line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/>
-  </svg>
-);
-
-const SvgShield = () => (
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffd700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-  </svg>
-);
-
-const SvgTrophy = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 9H2V4h4"/><path d="M18 9h4V4h-4"/>
-    <path d="M12 17v4"/><path d="M8 21h8"/>
-    <path d="M18 4H6v5a6 6 0 0 0 12 0V4z"/>
-  </svg>
-);
-
-const SvgBook = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-  </svg>
-);
-
-const SvgUser = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-  </svg>
-);
-
-const SvgSettings = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06-.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg>
-);
-
 const MODES = [
   {
     id: 'online',
-    icon: <SvgSword />,
     title: 'Play Online',
     sub: 'Ranked 1v1',
     desc: 'Match against live opponents in authoritative competitive combat.',
@@ -80,7 +24,6 @@ const MODES = [
   },
   {
     id: 'friend',
-    icon: <SvgUsers />,
     title: 'Play With Friend',
     sub: 'Private Room',
     desc: 'Duel directly using a private 6-character match code.',
@@ -91,7 +34,6 @@ const MODES = [
   },
   {
     id: 'ai',
-    icon: <SvgBot />,
     title: 'Practice vs AI',
     sub: 'Solo Training',
     desc: 'Hone defensive builds against server wave simulations.',
@@ -102,7 +44,6 @@ const MODES = [
   },
   {
     id: 'coop',
-    icon: <SvgShield />,
     title: 'Co-op Survival',
     sub: 'Alliance',
     desc: '2-Player alliance defending against coordinated onslaughts.',
@@ -188,25 +129,25 @@ export default function MainMenu({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '16px 28px',
+        padding: '14px 24px',
         borderBottom: '1px solid rgba(80, 130, 40, 0.25)',
         background: 'rgba(7, 16, 6, 0.75)',
         backdropFilter: 'blur(8px)',
       }}>
         {/* Emblem & Title */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <img
             src="/assets/Cards/card_sunflower.png"
             alt="PvZ"
-            style={{ width: 42, height: 42, objectFit: 'contain', imageRendering: 'pixelated' }}
+            style={{ width: 40, height: 40, objectFit: 'contain', imageRendering: 'pixelated' }}
           />
           <div>
-            <div className="game-title" style={{ fontSize: 20, color: '#ffd060', lineHeight: 1.1 }}>
+            <div className="game-title" style={{ fontSize: 18, color: '#ffd060', lineHeight: 1.1 }}>
               Tactical Warfare
             </div>
             <div style={{
               fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: 11,
+              fontSize: 10,
               color: 'rgba(130, 180, 80, 0.7)',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
@@ -222,17 +163,17 @@ export default function MainMenu({
             <div style={{ textAlign: 'right', marginRight: 4 }}>
               <div style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700, fontSize: 15, color: '#fce8c4',
+                fontWeight: 700, fontSize: 14, color: '#fce8c4',
               }}>
                 {user.display_name}
               </div>
-              <div className={`game-label ${rank.cls}`} style={{ fontSize: 11 }}>
-                {rank.title} &nbsp;&middot;&nbsp; {user.elo} ELO
+              <div className={`game-label ${rank.cls}`} style={{ fontSize: 10 }}>
+                {rank.title} &nbsp;·&nbsp; {user.elo} ELO
               </div>
             </div>
 
             <div style={{
-              width: 38, height: 38, borderRadius: '50%',
+              width: 36, height: 36, borderRadius: '50%',
               border: '2px solid rgba(130, 180, 80, 0.6)',
               overflow: 'hidden', background: '#0e1a08',
               flexShrink: 0,
@@ -246,18 +187,18 @@ export default function MainMenu({
 
             {user.is_admin && (
               <button className="pvz-btn pvz-btn-danger" style={{ padding: '6px 12px', fontSize: 11 }} onClick={() => onNavigate('admin')}>
-                <SvgSettings /> Admin
+                ⚙ Admin
               </button>
             )}
             <button className="pvz-btn pvz-btn-wood" style={{ padding: '6px 12px', fontSize: 11 }} onClick={() => onNavigate('profile')}>
-              <SvgUser /> Career
+              👤 Career
             </button>
             <button className="pvz-btn pvz-btn-danger" style={{ padding: '6px 12px', fontSize: 11 }} onClick={logout}>
               Logout
             </button>
           </div>
         ) : (
-          <button className="pvz-btn" style={{ fontSize: 13, padding: '9px 20px' }} onClick={onOpenAuth}>
+          <button className="pvz-btn" style={{ fontSize: 12, padding: '8px 18px' }} onClick={onOpenAuth}>
             Sign In / Register
           </button>
         )}
@@ -270,18 +211,18 @@ export default function MainMenu({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '0 24px',
-        gap: 20,
+        padding: '0 20px',
+        gap: 16,
       }}>
         {/* Title header */}
         <div style={{ textAlign: 'center' }}>
-          <h1 className="game-title" style={{ fontSize: 32, color: '#fce8c4', marginBottom: 4, textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
+          <h1 className="game-title" style={{ fontSize: 28, color: '#fce8c4', marginBottom: 4, textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
             Battle Arena
           </h1>
           <p style={{
             color: 'rgba(180, 165, 140, 0.7)',
             fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: 13,
+            fontSize: 12,
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
           }}>
@@ -293,7 +234,7 @@ export default function MainMenu({
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 16,
+          gap: 14,
           width: '100%',
           maxWidth: 1040,
         }}>
@@ -307,7 +248,7 @@ export default function MainMenu({
                 border: `2px solid ${mode.accentColor}55`,
                 borderTop: `3px solid ${mode.accentColor}`,
                 borderRadius: 6,
-                padding: '22px 18px 18px',
+                padding: '20px 16px 16px',
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
@@ -316,7 +257,7 @@ export default function MainMenu({
                 boxShadow: mode.featured ? '0 10px 28px rgba(0,0,0,0.8), 0 0 0 1px rgba(90,170,42,0.3)' : '0 6px 20px rgba(0,0,0,0.7)',
                 backdropFilter: 'blur(6px)',
                 overflow: 'hidden',
-                minHeight: 220,
+                minHeight: 200,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
@@ -337,7 +278,7 @@ export default function MainMenu({
                   position: 'absolute',
                   right: -10,
                   bottom: -10,
-                  width: 95,
+                  width: 90,
                   opacity: 0.12,
                   pointerEvents: 'none',
                 }}
@@ -345,11 +286,21 @@ export default function MainMenu({
 
               {/* Top row */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                  {mode.icon}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                   <span style={{
                     fontFamily: "'Barlow Condensed', sans-serif",
-                    fontSize: 10,
+                    fontSize: 24,
+                    fontWeight: 700,
+                    color: mode.accentColor,
+                  }}>
+                    {mode.id === 'online' && '⚔'}
+                    {mode.id === 'friend' && '🤝'}
+                    {mode.id === 'ai' && '🤖'}
+                    {mode.id === 'coop' && '🛡'}
+                  </span>
+                  <span style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontSize: 9,
                     fontWeight: 700,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
@@ -365,7 +316,7 @@ export default function MainMenu({
 
                 <h2 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
-                  fontSize: 19,
+                  fontSize: 17,
                   fontWeight: 700,
                   letterSpacing: '0.04em',
                   textTransform: 'uppercase',
@@ -375,7 +326,7 @@ export default function MainMenu({
                   {mode.title}
                 </h2>
                 <p style={{
-                  fontSize: 12,
+                  fontSize: 11,
                   color: 'rgba(180, 165, 140, 0.75)',
                   lineHeight: 1.5,
                 }}>
@@ -386,7 +337,7 @@ export default function MainMenu({
               {/* Action Button */}
               <button
                 className={mode.btnClass}
-                style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '10px', marginTop: 14 }}
+                style={{ width: '100%', justifyContent: 'center', fontSize: 12, padding: '10px', marginTop: 12 }}
                 onClick={(e) => { e.stopPropagation(); handleMode(mode.id); }}
               >
                 {mode.btnLabel}
@@ -402,24 +353,24 @@ export default function MainMenu({
         zIndex: 10,
         display: 'flex',
         justifyContent: 'center',
-        gap: 12,
-        padding: '14px 28px',
+        gap: 10,
+        padding: '12px 24px',
         borderTop: '1px solid rgba(80, 130, 40, 0.25)',
         background: 'rgba(7, 16, 6, 0.8)',
         backdropFilter: 'blur(8px)',
       }}>
-        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 18px', fontSize: 12 }} onClick={() => onNavigate('leaderboard')}>
-          <SvgTrophy /> Leaderboard
+        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 16px', fontSize: 11 }} onClick={() => onNavigate('leaderboard')}>
+          🏆 Leaderboard
         </button>
-        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 18px', fontSize: 12 }} onClick={() => onNavigate('almanac')}>
-          <SvgBook /> Garden Almanac
+        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 16px', fontSize: 11 }} onClick={() => onNavigate('almanac')}>
+          📖 Garden Almanac
         </button>
-        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 18px', fontSize: 12 }} onClick={() => onNavigate('profile')}>
-          <SvgUser /> Career Stats
+        <button className="pvz-btn pvz-btn-wood" style={{ padding: '8px 16px', fontSize: 11 }} onClick={() => onNavigate('profile')}>
+          📊 Career Stats
         </button>
         {user?.is_admin && (
-          <button className="pvz-btn pvz-btn-danger" style={{ padding: '8px 18px', fontSize: 12 }} onClick={() => onNavigate('admin')}>
-            <SvgSettings /> Mission Control
+          <button className="pvz-btn pvz-btn-danger" style={{ padding: '8px 16px', fontSize: 11 }} onClick={() => onNavigate('admin')}>
+            ⚙ Mission Control
           </button>
         )}
       </div>
