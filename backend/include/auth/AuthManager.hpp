@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../storage/BinaryContracts.hpp"
 #include "../storage/BinaryStorage.hpp"
 #include <string>
@@ -8,10 +7,21 @@
 #include <iomanip>
 #include <chrono>
 #include <cstring>
+#include <fstream>
 
 namespace Security {
 
-// Cryptographic hash (Salted SHA-256 verifier with multi-round mixing)
+// Fast hash function for session token validation
+inline uint64_t hash_token(const std::string& token) {
+    uint64_t h = 0x811c9dc5;
+    for (char c : token) {
+        h ^= static_cast<unsigned char>(c);
+        h *= 0x01000193;
+    }
+    return h;
+}
+
+// Custom cryptographic hash (Salted SHA-256 verifier with multi-round mixing)
 inline void hash_password_salted(const std::string& password, const uint8_t* salt, uint8_t* out_hash) {
     uint32_t state[8] = {
         0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
@@ -94,7 +104,7 @@ public:
         acc.created_at = now;
         acc.last_login = now;
         acc.is_active = 1;
-        acc.is_admin = (all_accounts.empty()) ? 1 : 0; // First registered user is Admin
+        acc.is_admin = (all_accounts.empty()) ? 1 : 0;
 
         ProfileRecord prof{};
         prof.user_id = new_user_id;
@@ -159,10 +169,20 @@ public:
         srec.is_revoked = 0;
 
         // Persist session
-        std::string sess_path = store.load_all_accounts().empty() ? "" : ""; // trigger init
-        store.init_file_if_empty("/app/data/sessions.bin", MAGIC_SESSIONS, 1, sizeof(SessionRecord));
-        
+        if (!store.save_session(srec)) {
+            error_msg = "Failed to create session";
+            return false;
+        }
+
         return true;
+    }
+
+    bool validate_session(const std::string& token, uint64_t& user_id) {
+        return store.validate_session(token, user_id);
+    }
+
+    bool revoke_session(const std::string& token) {
+        return store.revoke_session(token);
     }
 };
 

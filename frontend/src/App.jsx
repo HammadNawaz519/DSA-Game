@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AuthProvider, API_BASE } from './context/AuthContext';
 import MainMenu from './components/Menu/MainMenu';
-import GameBoard3D from './components/Game/GameBoard3D';
+import GameBoard from './components/Game/GameBoard';
 import MatchmakingModal from './components/Matchmaking/MatchmakingModal';
 import PrivateRoomModal from './components/Lobby/PrivateRoomModal';
 import Lobby from './components/Lobby/Lobby';
@@ -12,17 +12,19 @@ import AlmanacPage from './components/Almanac/AlmanacPage';
 import AuthModal from './components/Auth/AuthModal';
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState('menu'); // 'menu', 'game', 'lobby', 'profile', 'leaderboard', 'admin', 'almanac'
+  const [currentScreen, setCurrentScreen] = useState('menu');
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMatchmakingOpen, setIsMatchmakingOpen] = useState(false);
   const [isPrivateRoomOpen, setIsPrivateRoomOpen] = useState(false);
 
   const [activeRoomId, setActiveRoomId] = useState(null);
   const [activePlayerRole, setActivePlayerRole] = useState('PLANT');
+  const [activeMode, setActiveMode] = useState(1);
 
-  const handleStartGame = (roomId, role) => {
+  const handleStartGame = (roomId, role, mode = 1) => {
     setActiveRoomId(roomId);
     setActivePlayerRole(role);
+    setActiveMode(mode);
     setIsMatchmakingOpen(false);
     setIsPrivateRoomOpen(false);
     setCurrentScreen('game');
@@ -69,9 +71,10 @@ export default function App() {
         )}
 
         {currentScreen === 'game' && (
-          <GameBoard3D
+          <GameBoard
             roomId={activeRoomId}
             playerRole={activePlayerRole}
+            mode={activeMode}
             onExit={() => setCurrentScreen('menu')}
           />
         )}
